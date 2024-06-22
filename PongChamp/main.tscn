@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://bty7pglgint2x"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_0pjxf"]
+[ext_resource type="PackedScene" uid="uid://c2jdltd5ot2ay" path="res://ball.tscn" id="2_jv1dg"]
+[ext_resource type="PackedScene" uid="uid://nxkfnu8pk8eo" path="res://ceiling.tscn" id="3_welxw"]
+[ext_resource type="PackedScene" uid="uid://bkhkn3andmd12" path="res://floor.tscn" id="4_s7fhf"]
+[ext_resource type="PackedScene" uid="uid://bv3t4w0qa3yqo" path="res://player_1.tscn" id="5_5ust3"]
+[ext_resource type="PackedScene" uid="uid://ds7nk1ux2ycw8" path="res://player_2.tscn" id="6_xygok"]
+[ext_resource type="PackedScene" uid="uid://dd3ctwct1tqnm" path="res://hud.tscn" id="7_1mrxa"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0pjxf")
+
+[node name="Player1Position" type="Marker2D" parent="."]
+position = Vector2(25, 540)
+
+[node name="Player2Position" type="Marker2D" parent="."]
+position = Vector2(1895, 540)
+
+[node name="Ball" parent="." instance=ExtResource("2_jv1dg")]
+
+[node name="Ceiling" parent="." instance=ExtResource("3_welxw")]
+
+[node name="Floor" parent="." instance=ExtResource("4_s7fhf")]
+
+[node name="player1" parent="." instance=ExtResource("5_5ust3")]
+
+[node name="player2" parent="." instance=ExtResource("6_xygok")]
+
+[node name="HUD" parent="." instance=ExtResource("7_1mrxa")]
+
+[connection signal="start_game" from="HUD" to="." method="new_game"]
