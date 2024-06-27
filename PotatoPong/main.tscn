@@ -16,3 +16,6 @@ position = Vector2(200, 600)
 slide_on_ceiling = false
 
 [node name="Hud" parent="." instance=ExtResource("4_jj7w8")]
+
+[node name="Player2" parent="." instance=ExtResource("3_4b1gw")]
+position = Vector2(200, 120)
