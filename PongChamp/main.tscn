@@ -44,6 +44,9 @@ position = Vector2(1895, 540)
 [node name="HUD" parent="." instance=ExtResource("7_1mrxa")]
 
 [connection signal="bounce" from="." to="Ball" method="bounce"]
+[connection signal="player1score" from="Ball" to="." method="_on_ball_player_1_score"]
+[connection signal="player2score" from="Ball" to="." method="_on_ball_player_2_score"]
 [connection signal="playerhit" from="player1" to="." method="_on_playerhit"]
 [connection signal="playerhit" from="player2" to="." method="_on_playerhit"]
+[connection signal="new_game" from="HUD" to="." method="additional_game"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]

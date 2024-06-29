@@ -19,12 +19,35 @@ func new_game():
 	player1score = 0
 	player2score = 0
 
-func game_over():
-	pass
+func additional_game():
+	$Background.visible = false
+	$ColorRect.visible = true
+	$player1.hide()
+	$player2.hide()
+	$Ball.hide()
+	$Ball.velocity = Vector2.ZERO
+
+func reset():	
+	$player1.start($Player1Position.position)
+	$player2.start($Player2Position.position)
+	$Ball.start(0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if(player1score == 5):
+		$HUD.results(1)
+	if(player2score == 5):
+		$HUD.results(2)
+	
 
 func _on_playerhit():
 	bounce.emit()
+
+func _on_ball_player_1_score():
+	player1score += 1
+	$HUD.update_p1_score(player1score)
+	reset()
+func _on_ball_player_2_score():
+	player2score += 1
+	$HUD.update_p2_score(player2score)
+	reset()

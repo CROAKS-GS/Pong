@@ -66,5 +66,7 @@ text = "START"
 metadata/_edit_use_anchors_ = true
 
 [node name="MSGTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]

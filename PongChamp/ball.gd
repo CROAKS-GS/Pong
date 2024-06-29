@@ -3,6 +3,9 @@ var speed = 400
 var screen_size = Vector2.ZERO
 var hit = false
 
+signal player2score
+signal player1score
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -19,12 +22,16 @@ func start(num):
 	velocity.y = randi_range(-500, 500)
 	
 func bounce():
-	velocity.x = velocity.x * -1
+	velocity.x = velocity.x * -1.1
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if((position.y <= 0 and velocity.y < 0) or (position.y >= 1080 and velocity.y > 0)):
 		velocity.y = velocity.y * -1	
-		
+	if(position.x < 0):
+		player2score.emit()
+	if(position.x > 1920):
+		player1score.emit()
+	
 	position += velocity * delta
