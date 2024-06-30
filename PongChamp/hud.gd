@@ -3,7 +3,7 @@ extends CanvasLayer
 signal start_game # Used when the player clicks start
 signal new_game
 
-# Messages used
+# Messages used in PONGCHAMP
 const p1Win:String = "Player 1 Wins"
 const p2Win:String = "Player 2 Wins"
 const title:String = "PONGCHAMP"
