@@ -1,15 +1,17 @@
 extends Area2D
 
-signal playerhit
+signal playerhit # Signal that indicates that the player hit the ball
 
-var speed = 400
 var screen_size = Vector2.ZERO
+const movementSpeed:int = 1000 # movement speed of the player 
+const playerHitbox:int = 62.5 # Used so that the player does not clip the top or the bottom of the screen
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
-	hide()	
+	hide()	# Hide the player during the start menu
 
+# Start function that places the player on the starting position
 func start(pos):
 	position = pos
 	show()
@@ -18,15 +20,18 @@ func start(pos):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var velocity = Vector2.ZERO # The player's movement vector.
-	if Input.is_action_pressed("player2_down"):
-		velocity.y += 1000
-	if Input.is_action_pressed("player2_up"):
-		velocity.y -= 1000
 	
+	# Player1 movement
+	if Input.is_action_pressed("player2_down"):
+		velocity.y += movementSpeed
+	if Input.is_action_pressed("player2_up"):
+		velocity.y -= movementSpeed
+		
+	# Changing the velocity and making sure the player stays in-bounds 
 	position += velocity * delta
 	position.x = clamp(position.x, 0, screen_size.x)
-	position.y = clamp(position.y, 62.5, screen_size.y - 62.5)
+	position.y = clamp(position.y, playerHitbox, screen_size.y - playerHitbox)
 
-
+# Called when the ball collides with the player
 func _on_body_entered(body):
-	playerhit.emit()
+	playerhit.emit() 
