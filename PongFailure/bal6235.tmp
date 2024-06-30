@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2jdltd5ot2ay"]
+
+[ext_resource type="Texture2D" uid="uid://okbdp5qv2lpr" path="res://Sprites/ball.png" id="1_u3epr"]
+[ext_resource type="Script" path="res://ball.gd" id="1_yfdvs"]
+[ext_resource type="PackedScene" uid="uid://bv3t4w0qa3yqo" path="res://player_1.tscn" id="3_rs6wv"]
+[ext_resource type="PackedScene" uid="uid://ds7nk1ux2ycw8" path="res://player_2.tscn" id="4_j1n6a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gajd1"]
+radius = 13.0
+
+[node name="Ball" type="CharacterBody2D"]
+script = ExtResource("1_yfdvs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gajd1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_u3epr")
+
+[node name="player1" parent="." instance=ExtResource("3_rs6wv")]
+
+[node name="player2" parent="." instance=ExtResource("4_j1n6a")]
+
+[connection signal="playerhit" from="player1" to="." method="_on_player_hit"]
+[connection signal="playerhit" from="player2" to="." method="_on_player_hit"]
